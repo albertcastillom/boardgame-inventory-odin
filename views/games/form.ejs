@@ -1,0 +1,35 @@
+<!DOCTYPE html><html><head><meta charset="utf-8" />
+<title><%= title %></title><link rel="stylesheet" href="/styles.css" /></head><body>
+<%- include("../partials/header") %>
+<main class="page">
+  <h2><%= title %></h2>
+  <% if (errors && errors.length) { %>
+    <ul class="error"><% errors.forEach(e => { %><li><%= e %></li><% }) %></ul>
+  <% } %>
+  <form method="post" action="<%= formAction %>" class="form grid">
+    <label>Name <input name="name" type="text" value="<%= game.name || '' %>" required /></label>
+
+    <label>Min Players <input name="min_players" type="number" min="1" value="<%= game.minPlayers || game.min_players || '' %>" required /></label>
+    <label>Max Players <input name="max_players" type="number" min="1" value="<%= game.maxPlayers || game.max_players || '' %>" required /></label>
+    <label>Play Time (minutes) <input name="play_time_min" type="number" min="0" value="<%= game.playTimeMin || game.play_time_min || '' %>" required /></label>
+
+    <fieldset class="col-span-2">
+      <legend>Categories</legend>
+      <div class="chips">
+        <% categories.forEach(c => { %>
+          <label class="chip">
+            <input type="checkbox" name="category_ids" value="<%= c.id %>"
+              <%= (selectedCategoryIds || []).includes(c.id) ? 'checked' : '' %> />
+            <span><%= c.name %></span>
+          </label>
+        <% }) %>
+      </div>
+    </fieldset>
+
+    <div class="form-actions">
+      <button class="btn" type="submit">Save</button>
+      <a class="btn secondary" href="/games">Cancel</a>
+    </div>
+  </form>
+</main>
+</body></html>

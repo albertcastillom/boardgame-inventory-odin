@@ -1,0 +1,12 @@
+<!DOCTYPE html><html><head><meta charset="utf-8" />
+<title><%= title %></title><link rel="stylesheet" href="/styles.css" /></head><body>
+<%- include("../partials/header") %>
+<main class="page">
+  <h2><%= title %></h2>
+  <p class="muted">Deleting a category will NOT delete games; it only removes links.</p>
+  <form method="post" action="/categories/<%= category.id %>?_method=DELETE">
+    <button class="btn danger" type="submit">Delete</button>
+    <a class="btn secondary" href="/categories">Cancel</a>
+  </form>
+</main>
+</body></html>

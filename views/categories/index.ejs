@@ -1,0 +1,18 @@
+<!DOCTYPE html><html><head><meta charset="utf-8" />
+<title><%= title %></title><link rel="stylesheet" href="/styles.css" /></head><body>
+<%- include("../partials/header") %>
+<main class="page">
+  <h2>Categories</h2>
+  <ul class="plain-list">
+    <% categories.forEach(c => { %>
+      <li>
+        <a href="/categories/<%= c.id %>"><%= c.name %></a>
+        <span class="muted">(<%= c.game_count %>)</span>
+        <span class="spacer"></span>
+        <a class="small" href="/categories/<%= c.id %>/edit">Edit</a> ·
+        <a class="small danger" href="/categories/<%= c.id %>/delete">Delete</a>
+      </li>
+    <% }) %>
+  </ul>
+</main>
+</body></html>

@@ -13,4 +13,7 @@ const pool = connectionString
       port: Number(process.env.PGPORT) || 5432,
     });
 
-    module.exports = pool;
+    module.exports = {
+        query: (text, params) => pool.query(text, params),
+        pool
+    };

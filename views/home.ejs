@@ -1,0 +1,43 @@
+<!DOCTYPE html><html><head>
+<meta charset="utf-8" />
+<title><%= title %></title>
+<link rel="stylesheet" href="/styles.css" />
+</head><body>
+  <%- include("partials/header") %>
+
+  <main class="container">
+    <aside class="sidebar">
+      <h2>Categories</h2>
+      <ul class="category-list">
+        <li><a class="<%= !selectedCategoryId ? 'active' : '' %>" href="/">All</a></li>
+        <% categories.forEach(c => { %>
+          <li>
+            <a class="<%= selectedCategoryId === c.id ? 'active' : '' %>" href="/?category=<%= c.id %>">
+              <%= c.name %> (<%= c.game_count %>)
+            </a>
+          </li>
+        <% }) %>
+      </ul>
+    </aside>
+
+    <section class="content">
+      <h2><%= selectedCategoryId ? 'Filtered Games' : 'All Games' %></h2>
+      <% if (!games.length) { %>
+        <p class="muted">No games found.</p>
+      <% } else { %>
+        <ul class="games-grid">
+          <% games.forEach(g => { %>
+          <li class="game-card">
+            <h3><a href="/games/<%= g.id %>"><%= g.name %></a></h3>
+            <p class="meta">
+              <strong>Players:</strong> <%= g.min_players %>–<%= g.max_players %>
+              · <strong>Time:</strong> <%= g.play_time_min %> min
+              · <strong>Categories:</strong> <%= (g.categories || []).join(", ") || '—' %>
+            </p>
+          </li>
+          <% }) %>
+        </ul>
+      <% } %>
+    </section>
+  </main>
+</body></html>

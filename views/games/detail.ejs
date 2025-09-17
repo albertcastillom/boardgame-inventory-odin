@@ -1,0 +1,16 @@
+<!DOCTYPE html><html><head><meta charset="utf-8" />
+<title><%= title %></title><link rel="stylesheet" href="/styles.css" /></head><body>
+<%- include("../partials/header") %>
+<main class="page">
+  <h2><%= game.name %></h2>
+  <p class="meta">
+    <strong>Players:</strong> <%= game.min_players %>–<%= game.max_players %> ·
+    <strong>Time:</strong> <%= game.play_time_min %> min ·
+    <strong>Categories:</strong> <%= (game.categories || []).join(", ") || '—' %>
+  </p>
+  <p>
+    <a class="btn" href="/games/<%= game.id %>/edit">Edit</a>
+    <a class="btn secondary danger" href="/games/<%= game.id %>/delete">Delete</a>
+  </p>
+</main>
+</body></html>

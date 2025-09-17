@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node app.js"
+    "start": "node --watch app.js",
+    "db:create": "createdb boardgames || true",
+    "db:init": "node db/populatedb.js"
   },
   "repository": {
     "type": "git",
@@ -21,7 +23,9 @@
   "homepage": "https://github.com/albertcastillom/boardgame-inventory-odin#readme",
   "dependencies": {
     "dotenv": "^17.2.2",
+    "ejs": "^3.1.10",
     "express": "^5.1.0",
+    "method-override": "^3.0.0",
     "pg": "^8.16.3"
   }
 }

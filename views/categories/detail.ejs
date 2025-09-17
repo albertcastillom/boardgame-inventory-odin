@@ -1,0 +1,19 @@
+<!DOCTYPE html><html><head><meta charset="utf-8" />
+<title><%= title %></title><link rel="stylesheet" href="/styles.css" /></head><body>
+<%- include("../partials/header") %>
+<main class="page">
+  <h2><%= category.name %></h2>
+  <% if (!games.length) { %>
+    <p class="muted">No games in this category.</p>
+  <% } else { %>
+    <ul class="games-grid">
+      <% games.forEach(g => { %>
+        <li class="game-card">
+          <h3><a href="/games/<%= g.id %>"><%= g.name %></a></h3>
+          <p class="meta"><strong>Players:</strong> <%= g.min_players %>–<%= g.max_players %> · <strong>Time:</strong> <%= g.play_time_min %> min</p>
+        </li>
+      <% }) %>
+    </ul>
+  <% } %>
+</main>
+</body></html>
